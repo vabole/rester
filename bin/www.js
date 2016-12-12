@@ -9,7 +9,7 @@ const https = require('https');
 const fs = require('fs');
 const debug = require('debug')('post-listner:server');
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 
@@ -40,7 +40,7 @@ const secureServer = https.createServer(HTTPSoptions, app);
 
 secureServer.on('error', onError);
 secureServer.on('listening', onListening);
-secureServer.listen(3443);
+secureServer.listen(443);
 
 /**
  * Normalize a port into a number, string, or false.
