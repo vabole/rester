@@ -34,7 +34,7 @@ server.listen(port);
 const keyLocation = "/etc/letsencrypt/live/rester.ga/"
 let HTTPSoptions = {
     key: fs.readFileSync(keyLocation + "privkey.pem"),
-    cert: fs.readFileSync(keyLocation + "cert.pem");
+    cert: fs.readFileSync(keyLocation + "cert.pem")
 };
 
 const secureServer = https.createServer(HTTPSoptions, app);
