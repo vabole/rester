@@ -15,9 +15,9 @@ app.use(logger('dev'));
 app.set('x-powered-by', false);
 app.use( bodyParser.json());
 
-app.all('*', ensureSecure);
-
 app.use('/', index);
+
+app.all('*', ensureSecure);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
