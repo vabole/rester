@@ -31,18 +31,18 @@ server.listen(port);
 /**
  * Create HTTPS server
  */
-
-const keyLocation = `/etc/letsencrypt/live/${domainName}/`;
-let HTTPSoptions = {
-    key: fs.readFileSync(keyLocation + "key.decr.pem"),
-    cert: fs.readFileSync(keyLocation + "cert.pem")
-};
-
-const secureServer = https.createServer(HTTPSoptions, app);
-
-secureServer.on('error', onError);
-secureServer.on('listening', onListening);
-secureServer.listen(process.env.PORTHTTPS ||3443);
+//
+// const keyLocation = `/etc/letsencrypt/live/${domainName}/`;
+// let HTTPSoptions = {
+//     key: fs.readFileSync(keyLocation + "key.decr.pem"),
+//     cert: fs.readFileSync(keyLocation + "cert.pem")
+// };
+//
+// const secureServer = https.createServer(HTTPSoptions, app);
+//
+// secureServer.on('error', onError);
+// secureServer.on('listening', onListening);
+// secureServer.listen(process.env.PORTHTTPS ||3443);
 
 /**
  * Normalize a port into a number, string, or false.
