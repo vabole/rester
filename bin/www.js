@@ -9,9 +9,10 @@ const https = require('https');
 const fs = require('fs');
 const debug = require('debug')('post-listner:server');
 
-const port = normalizePort(process.env.PORT || '80');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+const domainName = process.env.DOMAIN || 'voto.gq';
 
 /**
  * Create HTTP server.
@@ -31,9 +32,9 @@ server.listen(port);
  * Create HTTPS server
  */
 
-const keyLocation = "/etc/letsencrypt/live/rester.ga/"
+const keyLocation = `/etc/letsencrypt/live/${domainName}/`;
 let HTTPSoptions = {
-    key: fs.readFileSync(keyLocation + "privkey.pem"),
+    key: fs.readFileSync(keyLocation + "key.decr.pem"),
     cert: fs.readFileSync(keyLocation + "cert.pem")
 };
 
@@ -41,14 +42,14 @@ const secureServer = https.createServer(HTTPSoptions, app);
 
 secureServer.on('error', onError);
 secureServer.on('listening', onListening);
-secureServer.listen(443);
+secureServer.listen(process.env.PORTHTTPS ||3443);
 
 /**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
-    var port = parseInt(val, 10);
+    const port = parseInt(val, 10);
 
     if (isNaN(port)) {
         // named pipe
@@ -73,7 +74,7 @@ function onError(error) {
         throw error;
     }
 
-    var bind = typeof port === 'string'
+    const bind = typeof port === 'string'
         ? 'Pipe ' + port
         : 'Port ' + port;
 
@@ -97,8 +98,8 @@ function onError(error) {
  */
 
 function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
+    const addr = server.address();
+    const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
