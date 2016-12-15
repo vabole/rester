@@ -16,12 +16,14 @@ app.set('x-powered-by', false);
 app.use( bodyParser.json());
 
 app.use('/', index);
+app.use(express.static('static'));
+
 
 app.all('*', ensureSecure);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    const err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
