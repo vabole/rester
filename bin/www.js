@@ -5,14 +5,11 @@
 
 const app = require('../app');
 const http = require('http');
-const https = require('https');
-const fs = require('fs');
+//const fs = require('fs');
 const debug = require('debug')('post-listner:server');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-
-const domainName = process.env.DOMAIN || 'voto.gq';
 
 /**
  * Create HTTP server.
@@ -27,22 +24,6 @@ const server = http.createServer(app);
 server.on('error', onError);
 server.on('listening', onListening);
 server.listen(port);
-
-/**
- * Create HTTPS server
- */
-//
-// const keyLocation = `/etc/letsencrypt/live/${domainName}/`;
-// let HTTPSoptions = {
-//     key: fs.readFileSync(keyLocation + "key.decr.pem"),
-//     cert: fs.readFileSync(keyLocation + "cert.pem")
-// };
-//
-// const secureServer = https.createServer(HTTPSoptions, app);
-//
-// secureServer.on('error', onError);
-// secureServer.on('listening', onListening);
-// secureServer.listen(process.env.PORTHTTPS ||3443);
 
 /**
  * Normalize a port into a number, string, or false.

@@ -4,7 +4,6 @@
 "use strict";
 const express = require('express');
 const logger = require('morgan');
-const ensureSecure =require('./ensure-secure');
 
 const index = require('./routes/index');
 const bodyParser = require('body-parser');
@@ -17,9 +16,6 @@ app.use( bodyParser.json());
 
 app.use('/', index);
 app.use(express.static('static'));
-
-
-app.all('*', ensureSecure);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

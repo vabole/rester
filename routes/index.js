@@ -13,10 +13,10 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res){
-    const filename = (new Date()).toJSON();
     console.log(filename);
+
     console.log(req.body);
-    res.json(res.body);
+    res.json(req.body);
 });
 
 module.exports = router;
